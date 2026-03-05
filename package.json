@@ -1,0 +1,13 @@
+{
+  "name": "iagreg-web",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "IAGreg Consulting Landing Page",
+  "scripts": {
+    "serve": "node serve.mjs",
+    "screenshot": "node screenshot.mjs"
+  },
+  "dependencies": {
+    "puppeteer": "^24.38.0"
+  }
+}
