@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>IAGreg Consulting — IA para Clínicas Estéticas</title>
+  <title>IAGreg Consulting — IA para Clínicas y Asesoría Sanitaria</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -1157,14 +1157,20 @@
       .nav-logo img { height: 34px; }
 
       /* Hero */
-      #hero-greg { display: none; }
-      .hero-greg-glow { display: none; }
-      .hero-content { padding: 1.5rem; padding-top: 90px; flex-direction: column; gap: 2.5rem; }
-      .hero-left { text-align: center; }
+      #hero-greg {
+        display: block;
+        left: 50%; height: 65vh; opacity: 0;
+        bottom: 0;
+        -webkit-mask-image: linear-gradient(to top, transparent 0%, black 15%, black 70%, transparent 100%);
+        mask-image: linear-gradient(to top, transparent 0%, black 15%, black 70%, transparent 100%);
+      }
+      .hero-greg-glow { left: 50%; width: 350px; height: 450px; }
+      .hero-content { padding: 1.5rem; padding-top: 100px; flex-direction: column; gap: 2.5rem; }
+      .hero-left { text-align: center; position: relative; z-index: 4; }
       .hero-h1 { font-size: clamp(2.4rem, 6vw, 3.8rem); }
       .hero-sub { margin-left: auto; margin-right: auto; text-align: center; }
       .hero-ctas { justify-content: center; }
-      .hero-label { justify-content: center; }
+      .hero-label { justify-content: center; font-size: 0.6rem; }
       .hero-label::before { display: none; }
       .hero-right { width: 100%; max-width: 360px; margin: 0 auto; }
       .scroll-hint { display: none; }
@@ -1245,7 +1251,10 @@
       .btn-nav-grad span { padding: 0.45rem 0.9rem; font-size: 0.75rem; border-radius: 6px; }
 
       /* Hero */
-      .hero-content { padding: 1rem; padding-top: 80px; gap: 2rem; }
+      #hero-greg { height: 55vh; }
+      .hero-greg-glow { width: 280px; height: 360px; }
+      .hero-content { padding: 1rem; padding-top: 90px; gap: 2rem; }
+      .hero-label { font-size: 0.55rem; letter-spacing: 0.15em; }
       .hero-h1 { font-size: clamp(2rem, 8vw, 3rem); line-height: 0.96; }
       .hero-sub { font-size: 0.95rem; }
       .hero-ctas { flex-direction: column; gap: 0.75rem; width: 100%; }
@@ -1303,7 +1312,13 @@
       .paso-icon svg { width: 16px; height: 16px; }
       .paso-title { font-size: 1rem; }
       .paso-desc { font-size: 0.82rem; }
-      .proceso-bg-photo { display: none; }
+      .proceso-bg-photo {
+        opacity: 0.12; right: -15%; height: 60%;
+        -webkit-mask-image: linear-gradient(to top, transparent 0%, black 20%, black 70%, transparent 100%),
+                            linear-gradient(to left, transparent 0%, black 30%, black 100%);
+        -webkit-mask-composite: destination-in;
+        mask-composite: intersect;
+      }
 
       /* Sobre mí */
       #sobre-mi { padding: 4rem 1rem; }
@@ -1389,7 +1404,7 @@
          alt="Greg Mejías — CEO IAGreg Consulting" />
     <div class="hero-content">
       <div class="hero-left">
-        <p class="hero-label" id="hero-label">Inteligencia Artificial · Clínicas Estéticas</p>
+        <p class="hero-label" id="hero-label">Inteligencia Artificial · Clínicas y Asesoría Sanitaria</p>
         <h1 class="hero-h1" id="hero-h1">
           Clínicas que<br />
           <span class="accent">escalan con</span><br />
@@ -1513,13 +1528,13 @@
       <span class="marquee-item">AUTOMATIZACIÓN INTELIGENTE</span><span class="marquee-item marquee-sep">·</span>
       <span class="marquee-item">ASESORÍA ESTRATÉGICA</span><span class="marquee-item marquee-sep">·</span>
       <span class="marquee-item">COORDINACIÓN DE FORMACIONES</span><span class="marquee-item marquee-sep">·</span>
-      <span class="marquee-item">CLÍNICAS ESTÉTICAS</span><span class="marquee-item marquee-sep">·</span>
+      <span class="marquee-item">CLÍNICAS Y ASESORÍA SANITARIA</span><span class="marquee-item marquee-sep">·</span>
       <span class="marquee-item">INTELIGENCIA ARTIFICIAL</span><span class="marquee-item marquee-sep">·</span>
       <span class="marquee-item">GESTIÓN MÉDICA REAL</span><span class="marquee-item marquee-sep">·</span>
       <span class="marquee-item">AUTOMATIZACIÓN INTELIGENTE</span><span class="marquee-item marquee-sep">·</span>
       <span class="marquee-item">ASESORÍA ESTRATÉGICA</span><span class="marquee-item marquee-sep">·</span>
       <span class="marquee-item">COORDINACIÓN DE FORMACIONES</span><span class="marquee-item marquee-sep">·</span>
-      <span class="marquee-item">CLÍNICAS ESTÉTICAS</span><span class="marquee-item marquee-sep">·</span>
+      <span class="marquee-item">CLÍNICAS Y ASESORÍA SANITARIA</span><span class="marquee-item marquee-sep">·</span>
       <span class="marquee-item">INTELIGENCIA ARTIFICIAL</span><span class="marquee-item marquee-sep">·</span>
       <span class="marquee-item">GESTIÓN MÉDICA REAL</span><span class="marquee-item marquee-sep">·</span>
     </div>
@@ -1820,7 +1835,7 @@
         Tu clínica merece<br />
         <em>tecnología de vanguardia</em>
       </h2>
-      <p class="cta-sub">Agenda una asesoría gratuita y descubre cómo IAGreg puede transformar tu clínica estética. Sin compromisos. Con resultados.</p>
+      <p class="cta-sub">Agenda una asesoría gratuita y descubre cómo IAGreg puede transformar tu clínica. Sin compromisos. Con resultados.</p>
       <a href="https://cal.com/iagreg" class="btn-cta" target="_blank">
         Agendar Asesoría Gratuita
         <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M3.5 9h11M10 4.5l4.5 4.5-4.5 4.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -1833,7 +1848,7 @@
     <div class="footer-inner">
       <div class="footer-brand">
         <img src="./assets/logo.png" alt="IAGreg" />
-        <p>Consultora especializada en IA y gestión médica para clínicas estéticas. Tecnología guiada por experiencia real de campo.</p>
+        <p>Consultora especializada en IA y gestión sanitaria para clínicas. Tecnología guiada por experiencia real de campo.</p>
       </div>
       <div class="footer-col">
         <h4>Servicios</h4>
