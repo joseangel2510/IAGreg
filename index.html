@@ -30,7 +30,7 @@
     html { scroll-behavior: smooth; }
     body {
       font-family: 'DM Sans', sans-serif;
-      background: var(--negro) url('./guidelines desing/brand assets/Captura de pantalla 2026-03-05 092315.jpg') center/cover fixed;
+      background: var(--negro) url('./assets/galaxy-bg.jpg') center/cover fixed;
       color: #E2E8F0;
       overflow-x: hidden;
     }
@@ -47,6 +47,41 @@
     /* CURSOR */
     .cursor { position:fixed; width:8px; height:8px; background:var(--cian); border-radius:50%; pointer-events:none; z-index:9999; transform:translate(-50%,-50%); mix-blend-mode:difference; }
     .cursor-ring { position:fixed; width:32px; height:32px; border:1px solid rgba(51,169,254,0.4); border-radius:50%; pointer-events:none; z-index:9998; transform:translate(-50%,-50%); }
+    @media (max-width: 960px) { .cursor, .cursor-ring { display: none !important; } }
+
+    /* HAMBURGER */
+    .nav-hamburger {
+      display: none; background: none; border: none; cursor: pointer;
+      width: 36px; height: 36px; padding: 6px;
+      flex-direction: column; justify-content: center; gap: 5px;
+    }
+    .nav-hamburger span {
+      display: block; width: 100%; height: 2px;
+      background: #fff; border-radius: 2px;
+      transition: transform 0.3s cubic-bezier(0.4,0,0.2,1), opacity 0.3s;
+    }
+    .nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav-hamburger.open span:nth-child(2) { opacity: 0; }
+    .nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    @media (max-width: 960px) { .nav-hamburger { display: flex; } .btn-nav-desktop { display: none; } }
+
+    /* Mobile menu overlay */
+    .mobile-menu {
+      display: none; position: fixed; inset: 0; z-index: 99;
+      background: rgba(5,5,8,0.96);
+      backdrop-filter: blur(24px);
+      flex-direction: column; align-items: center; justify-content: center; gap: 2rem;
+      padding: 2rem;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      font-family: 'Syne', sans-serif; font-size: 1.6rem; font-weight: 700;
+      color: #fff; text-decoration: none;
+      opacity: 0.8; transition: opacity 0.2s;
+    }
+    .mobile-menu a:hover { opacity: 1; }
+    .mobile-menu .btn-nav-grad { margin-top: 1rem; }
+    .mobile-menu .btn-nav-grad span { padding: 0.75rem 2rem; font-size: 1rem; }
 
     /* ═══════════ NAVBAR ═══════════ */
     #navbar {
@@ -1038,7 +1073,7 @@
     }
     .cta-bg {
       position: absolute; inset: 0;
-      background: url('./guidelines desing/brand assets/Captura de pantalla 2026-03-05 092406.jpg') center/cover no-repeat;
+      background: url('./assets/cta-bg.jpg') center/cover no-repeat;
     }
     .cta-bg::after {
       content:''; position:absolute; inset:0;
@@ -1113,22 +1148,194 @@
     .social-link:hover { border-color:var(--morado); color:var(--morado-med); background:rgba(139,92,246,0.08); }
     .social-link:focus-visible { outline:2px solid var(--morado); outline-offset:3px; }
 
-    /* ═══════════ RESPONSIVE ═══════════ */
+    /* ═══════════ RESPONSIVE — TABLET (max 960px) ═══════════ */
     @media (max-width: 960px) {
-      #navbar { padding: 1rem 1.5rem; }
+      /* Navbar */
+      #navbar { padding: 0.75rem 1rem; }
+      .navbar-inner { padding: 0.6rem 1rem; border-radius: 18px; }
       .nav-links { display: none; }
-      .hero-content { padding: 1.5rem; padding-top: 80px; flex-direction: column; }
-      .hero-right { width: 100%; }
+      .nav-logo img { height: 34px; }
+
+      /* Hero */
+      #hero-greg { display: none; }
+      .hero-greg-glow { display: none; }
+      .hero-content { padding: 1.5rem; padding-top: 90px; flex-direction: column; gap: 2.5rem; }
+      .hero-left { text-align: center; }
+      .hero-h1 { font-size: clamp(2.4rem, 6vw, 3.8rem); }
+      .hero-sub { margin-left: auto; margin-right: auto; text-align: center; }
+      .hero-ctas { justify-content: center; }
+      .hero-label { justify-content: center; }
+      .hero-label::before { display: none; }
+      .hero-right { width: 100%; max-width: 360px; margin: 0 auto; }
+      .scroll-hint { display: none; }
+
+      /* Automation */
+      #automatizacion { padding: 5rem 1.5rem; }
+      .auto-devices { flex-direction: column; gap: 1.5rem; }
+      .auto-phone { width: 100%; max-width: 340px; }
+      .auto-connector { width: auto; flex-direction: row; gap: 0.75rem; transform: rotate(90deg); }
+      .connector-svg { width: 60px; height: 30px; }
+      .auto-agenda { width: 100%; max-width: 400px; }
+
+      /* Stats */
+      #stats { padding: 5rem 1.5rem; }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .stat-item { padding: 2rem 1.5rem; }
+      .stat-item:nth-child(2) { border-right: none; }
+      .stat-item:nth-child(3), .stat-item:nth-child(4) { border-top: 1px solid rgba(255,255,255,0.06); }
+      .stat-item:not(:first-child) { padding-left: 1.5rem; }
+
+      /* Servicios */
       .servicios-layout { flex-direction: column; }
-      .servicios-left { position: relative; width: 100%; min-height: unset; padding: 4rem 1.5rem 2rem; }
-      .servicios-right { padding: 2rem 1.5rem 4rem; }
+      .servicios-left {
+        position: relative; width: 100%; min-height: unset;
+        padding: 5rem 1.5rem 2.5rem; border-right: none;
+        border-bottom: 1px solid rgba(139,92,246,0.2);
+      }
+      .servicios-right { padding: 3rem 1.5rem 5rem; }
+      .serv-block { grid-template-columns: 1fr; gap: 2rem; }
+      .serv-block .serv-image { max-width: 400px; }
+
+      /* Proceso — single column on tablet too */
+      #proceso { padding: 5rem 1.5rem; }
+      .proceso-bg-photo { opacity: 0.1; }
+      .proceso-timeline { padding-left: 40px; }
+      .proceso-timeline::before { left: 20px; }
+      .proceso-line-progress { left: 20px; }
+      .paso {
+        width: 100% !important;
+        margin-left: 0 !important;
+        text-align: left !important;
+      }
+      .paso-icon {
+        position: absolute !important;
+        left: -44px !important;
+        right: auto !important;
+        top: 1.5rem;
+      }
+
+      /* Sobre mí */
+      #sobre-mi { padding: 5rem 1.5rem; }
       .sobre-inner { grid-template-columns: 1fr; gap: 3rem; }
+      .sobre-left { position: relative; top: 0; max-width: 400px; margin: 0 auto; }
+
+      /* Testimonios */
+      #testimonios { padding: 5rem 1.5rem; }
+      .test-header { flex-direction: column; gap: 1.5rem; align-items: flex-start; }
+      .test-sub { text-align: left; max-width: none; }
       .test-grid { grid-template-columns: 1fr; }
       .test-card { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.05); }
-      .test-header { flex-direction: column; gap: 1rem; }
-      .test-sub { text-align: left; }
-      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .test-card:last-child { border-bottom: none; }
+
+      /* CTA */
+      #cta { padding: 6rem 1.5rem; }
+
+      /* Footer */
       .footer-inner { grid-template-columns: 1fr 1fr; gap: 2rem; }
+      footer { padding: 3rem 1.5rem 2rem; }
+    }
+
+    /* ═══════════ RESPONSIVE — MOBILE (max 600px) ═══════════ */
+    @media (max-width: 600px) {
+      /* Navbar */
+      #navbar { padding: 0.5rem 0.75rem; }
+      .navbar-inner { padding: 0.5rem 0.85rem; border-radius: 14px; gap: 0.5rem; }
+      .nav-logo img { height: 28px; }
+      .btn-nav-grad { border-radius: 8px; padding: 2px; }
+      .btn-nav-grad span { padding: 0.45rem 0.9rem; font-size: 0.75rem; border-radius: 6px; }
+
+      /* Hero */
+      .hero-content { padding: 1rem; padding-top: 80px; gap: 2rem; }
+      .hero-h1 { font-size: clamp(2rem, 8vw, 3rem); line-height: 0.96; }
+      .hero-sub { font-size: 0.95rem; }
+      .hero-ctas { flex-direction: column; gap: 0.75rem; width: 100%; }
+      .btn-primary, .btn-ghost { width: 100%; justify-content: center; padding: 0.85rem 1.5rem; }
+      .hero-right { max-width: 100%; }
+      .hero-services-card { padding: 1.25rem; }
+
+      /* Automation */
+      #automatizacion { padding: 4rem 1rem; }
+      .auto-header h2 { font-size: clamp(1.6rem, 5.5vw, 2.2rem); }
+      .auto-sub { font-size: 0.9rem; }
+      .auto-phone { max-width: 300px; }
+      .phone-frame { border-radius: 28px; }
+      .wa-chat { min-height: 280px; padding: 0.75rem 0.5rem; }
+      .wa-msg { font-size: 0.72rem; }
+      .auto-agenda { max-width: 100%; }
+      .agenda-slot { font-size: 0.68rem; padding: 0.5rem 0.6rem; }
+      .agenda-day { font-size: 0.6rem; }
+
+      /* Stats */
+      #stats { padding: 4rem 1rem; }
+      .stats-grid { grid-template-columns: 1fr 1fr; gap: 0; }
+      .stat-num { font-size: clamp(2.2rem, 10vw, 3.5rem); }
+      .stat-item { padding: 1.5rem 1rem; }
+      .stat-item:not(:first-child) { padding-left: 1rem; }
+      .stat-desc { font-size: 0.72rem; }
+
+      /* Servicios */
+      .servicios-left { padding: 4rem 1rem 2rem; }
+      .servicios-right { padding: 2rem 1rem 4rem; }
+      .serv-block { gap: 1.5rem; margin-bottom: 4rem; padding-bottom: 4rem; }
+      .serv-block h3 { font-size: clamp(1.6rem, 5.5vw, 2.2rem); }
+      .serv-block-lead { font-size: 0.92rem; margin-bottom: 1.5rem; }
+      .serv-feat { font-size: 0.85rem; }
+
+      /* Proceso timeline — single column on mobile */
+      #proceso { padding: 4rem 1rem; }
+      .proceso-header h2 { font-size: clamp(1.6rem, 5.5vw, 2.2rem); }
+      .proceso-timeline { padding-left: 32px; }
+      .proceso-timeline::before { left: 16px; }
+      .proceso-line-progress { left: 16px; }
+      .paso {
+        width: 100% !important;
+        margin-left: 0 !important;
+        text-align: left !important;
+        padding: 1rem 1rem 1rem 0;
+      }
+      .paso-icon {
+        position: absolute !important;
+        left: -38px !important;
+        right: auto !important;
+        top: 1rem;
+        width: 36px; height: 36px;
+      }
+      .paso-icon svg { width: 16px; height: 16px; }
+      .paso-title { font-size: 1rem; }
+      .paso-desc { font-size: 0.82rem; }
+      .proceso-bg-photo { display: none; }
+
+      /* Sobre mí */
+      #sobre-mi { padding: 4rem 1rem; }
+      .sobre-h2 { font-size: clamp(1.8rem, 6vw, 2.5rem); }
+      .sobre-text { font-size: 0.9rem; }
+      .sobre-quote { font-size: 0.92rem; padding-left: 1rem; }
+
+      /* Testimonios */
+      #testimonios { padding: 4rem 1rem; }
+      .test-h2 { font-size: clamp(2rem, 7vw, 3rem); }
+      .test-quote { font-size: 0.9rem; }
+      .test-card { padding: 2rem 1.25rem; }
+
+      /* CTA */
+      #cta { padding: 5rem 1rem; }
+      .cta-h2 { font-size: clamp(2rem, 7vw, 3.5rem); }
+      .cta-sub { font-size: 0.95rem; }
+      .btn-cta { padding: 0.95rem 2rem; font-size: 0.95rem; }
+
+      /* Footer */
+      footer { padding: 2.5rem 1rem 1.5rem; }
+      .footer-inner { grid-template-columns: 1fr; gap: 2rem; }
+      .footer-brand p { max-width: none; }
+      .footer-bottom { flex-direction: column; gap: 1rem; text-align: center; }
+    }
+
+    /* ═══════════ RESPONSIVE — SMALL MOBILE (max 380px) ═══════════ */
+    @media (max-width: 380px) {
+      .hero-h1 { font-size: 1.9rem; }
+      .btn-nav-grad span { padding: 0.4rem 0.7rem; font-size: 0.7rem; }
+      .stat-num { font-size: 2rem; }
+      .auto-header h2 { font-size: 1.5rem; }
     }
   </style>
 </head>
@@ -1141,7 +1348,7 @@
   <nav id="navbar">
     <div class="navbar-inner">
       <a href="#" class="nav-logo">
-        <img src="./guidelines desing/brand assets/logo ia greg.png" alt="IAGreg Consulting" />
+        <img src="./assets/logo.png" alt="IAGreg Consulting" />
       </a>
       <ul class="nav-links">
         <li><a href="#servicios">Servicios</a></li>
@@ -1149,11 +1356,23 @@
         <li><a href="#sobre-mi">Sobre Mí</a></li>
         <li><a href="#testimonios">Testimonios</a></li>
       </ul>
-      <a href="https://cal.com/iagreg" class="btn-nav-grad" target="_blank">
+      <a href="https://cal.com/iagreg" class="btn-nav-grad btn-nav-desktop" target="_blank">
         <span>Agendar Asesoría</span>
       </a>
+      <button class="nav-hamburger" id="nav-hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
     </div>
   </nav>
+  <div class="mobile-menu" id="mobile-menu">
+    <a href="#servicios" class="mobile-menu-link">Servicios</a>
+    <a href="#stats" class="mobile-menu-link">Resultados</a>
+    <a href="#sobre-mi" class="mobile-menu-link">Sobre Mí</a>
+    <a href="#testimonios" class="mobile-menu-link">Testimonios</a>
+    <a href="https://cal.com/iagreg" class="btn-nav-grad" target="_blank">
+      <span>Agendar Asesoría</span>
+    </a>
+  </div>
 
   <!-- ═══ HERO ═══ -->
   <section id="hero">
@@ -1166,7 +1385,7 @@
     <canvas id="hero-canvas"></canvas>
     <div class="hero-greg-glow"></div>
     <img id="hero-greg"
-         src="./guidelines desing/brand assets/foto_de_fondo_hero-removebg-preview.png"
+         src="./assets/hero-greg.png"
          alt="Greg Mejías — CEO IAGreg Consulting" />
     <div class="hero-content">
       <div class="hero-left">
@@ -1390,7 +1609,7 @@
             <p class="serv-tagline">Menos carga operativa. Más conversión.</p>
           </div>
           <div class="serv-image">
-            <img src="./guidelines desing/brand assets/Captura de pantalla 2026-03-05 092241.jpg" alt="Automatización con IA" />
+            <img src="./assets/serv-automatizacion.jpg" alt="Automatización con IA" />
           </div>
         </div>
 
@@ -1408,7 +1627,7 @@
             <p class="serv-tagline">Auditamos. Diseñamos. Ejecutamos.</p>
           </div>
           <div class="serv-image">
-            <img src="./guidelines desing/brand assets/Captura de pantalla 2026-03-05 092255.jpg" alt="Asesoría Estratégica" />
+            <img src="./assets/serv-asesoria.jpg" alt="Asesoría Estratégica" />
           </div>
         </div>
 
@@ -1426,7 +1645,7 @@
             <p class="serv-tagline">Tecnología de élite. Experiencia clínica real.</p>
           </div>
           <div class="serv-image">
-            <img src="./guidelines desing/brand assets/Captura de pantalla 2026-03-05 092337.jpg" alt="Formaciones médico-estéticas" />
+            <img src="./assets/serv-formacion.jpg" alt="Formaciones médico-estéticas" />
           </div>
         </div>
 
@@ -1436,7 +1655,7 @@
 
   <!-- ═══ PROCESO ═══ -->
   <section id="proceso">
-    <img class="proceso-bg-photo" src="./guidelines desing/brand assets/foto de pasos.jpg" alt="" />
+    <img class="proceso-bg-photo" src="./assets/proceso-bg.jpg" alt="" />
     <div class="proceso-inner">
       <div class="proceso-header">
         <p class="section-label" style="justify-content:center;margin-bottom:1.5rem;">Nuestro Proceso</p>
@@ -1509,7 +1728,7 @@
       <div class="sobre-left">
         <div class="sobre-photo-glow"></div>
         <div class="sobre-photo-wrap">
-          <img src="./guidelines desing/brand assets/foto de seccion sobre mi.jpg" alt="Greg Mejías — Fundador IAGreg Consulting" />
+          <img src="./assets/sobre-mi.jpg" alt="Greg Mejías — Fundador IAGreg Consulting" />
         </div>
       </div>
       <div class="sobre-right">
@@ -1613,7 +1832,7 @@
   <footer>
     <div class="footer-inner">
       <div class="footer-brand">
-        <img src="./guidelines desing/brand assets/logo ia greg.png" alt="IAGreg" />
+        <img src="./assets/logo.png" alt="IAGreg" />
         <p>Consultora especializada en IA y gestión médica para clínicas estéticas. Tecnología guiada por experiencia real de campo.</p>
       </div>
       <div class="footer-col">
@@ -1682,6 +1901,22 @@
     const navbar = document.getElementById('navbar');
     window.addEventListener('scroll', () => {
       navbar.classList.toggle('scrolled', window.scrollY > 60);
+    });
+
+    // Mobile menu
+    const hamburger = document.getElementById('nav-hamburger');
+    const mobileMenu = document.getElementById('mobile-menu');
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('open');
+      mobileMenu.classList.toggle('open');
+      document.body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : '';
+    });
+    document.querySelectorAll('.mobile-menu-link').forEach(link => {
+      link.addEventListener('click', () => {
+        hamburger.classList.remove('open');
+        mobileMenu.classList.remove('open');
+        document.body.style.overflow = '';
+      });
     });
 
     // Canvas particles
